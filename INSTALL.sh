@@ -19,12 +19,43 @@ if [ ! -e $UDON_DIR ] ; then
 	mkdir $UDON_DIR
 fi
 
+
 install -m 755 -o root ./src/udon $UDON_DIR
+if [ $? -ne 0 ] ; then
+	echo "Error: install failed - src/udon"
+	exit 1
+fi
+
 install -m 755 -o root ./src/udon_init.py $UDON_DIR
+if [ $? -ne 0 ] ; then
+	echo "Error: install failed - src/udon_init.py"
+	exit 1
+fi
+
 install -m 444 -o root ./src/libudon.py $UDON_DIR
+if [ $? -ne 0 ] ; then
+	echo "Error: install failed - src/libudon.py"
+	exit 1
+fi
+
 install -m 444 -o root ./src/udon.proto $UDON_DIR
+if [ $? -ne 0 ] ; then
+	echo "Error: install failed - src/udon.proto"
+	exit 1
+fi
+
 install -m 755 -o root ./src/udon-server $UDON_DIR
+if [ $? -ne 0 ] ; then
+	echo "Error: install failed - src/udon-server"
+	exit 1
+fi
+
 install -m 755 -o root ./src/test_libudon.py $UDON_DIR
+if [ $? -ne 0 ] ; then
+	echo "Error: install failed src/test_libudon.py"
+	exit 1
+fi
+
 
 # VERIFY VENV MODULE IS INSTALLED
 if [ ! -e "/usr/local/bin/udon/udon-venv" ] ; then
