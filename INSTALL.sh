@@ -3,11 +3,18 @@
 UDON_DIR=/usr/local/bin/udon/
 
 PYTHON=`which python3`
-if [ $PYTHON = "" ] ; then
+if [ "$PYTHON" = "" ] ; then
 	echo 'Error: python3 path no found'
 	exit 1
 fi
 echo "[FOUND] python3 at $PYTHON"
+
+PIP=`which pip`
+if [ "$PIP" = "" ] ; then
+	echo 'Error: 'pip' path no found'
+	exit 1
+fi
+echo "[FOUND] pip at $PIP"
 
 EID=`id -u`
 if [ $EID -ne 0 ] ; then
