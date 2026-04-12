@@ -16,9 +16,22 @@
 
 * Minimal and Primitive message passing service - No GUI. No fluff.
 
-* The Server is ignorant - Server does not store user info or state. Users
-  are identified by the md5sum of their public key.
+* The Server is ignorant - Server does not store user info or state. The server
+  identifues users by the md5sum of their public key, located in
+  ../..udon/keys/server_side_keys/ direcotry.
 
+# Tested Platforms
+
+This project has been sucessfully installed and tested on the following:
+OS platforms
+
+* Arch Linux
+
+* Debian (Trixie)
+
+* Fedora (43)
+
+* Raspian (Bookworm)
 
 # 1. Installation
 
