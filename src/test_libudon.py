@@ -18,6 +18,7 @@ import platform
 import datetime
 import hashlib
 import shutil
+import socket
 import config
 import sys
 import os
@@ -968,7 +969,6 @@ def config_test(cfg_path: str, silent_flag=False):
 			print(f"Error: load config as dictionary {e}: {cfg_path}")
 			evaluate(True, False, f"config_test() - config.Config({cfg_path}).as_dict()", silent=silent_flag)
 
-
 		""" Verify all assets are defined """
 		""" Verify channel is named correctly """
 		if verify_channel(cfg, cfg_path):
@@ -1227,8 +1227,27 @@ def verify_sqlite3():
 	evaluate(True, True, f"verify_sqlite3()")
 
 
+def running_tests_on_server(cfs_path: str):
+	try:
+		cfg = config.Config(cfg_path).as_dict()
+	except Exception as e:
+		print(f"Error: load config at dictionary {e}: {cfg_path}")
+		evaluate(True, False, f"tests_on_server() - config.Config({cfg_path}).as_dict()", silent=silent_flag)
+
+	hostname = socket.gethostname()
+	cfg_hostname = cfg['server_fqdn']
+
+	print(hostname,cfg_hostname)
+	if cfg_hostname == hostname:
+		evaluate(True, True, f"test_on_server()")
+	else:
+		evaluate(True, False, f"test_on_server()")
+
+
 def run_tests(cfg: str, srv_cfg: str):
 	check_types()
+
+	running_tests_on_server(cfg)
 
 	""" Utils tests """
 	test_home_dir()
