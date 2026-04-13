@@ -33,7 +33,7 @@ OS platforms
 
 * Raspian (Bookworm)
 
-# 1. Installation
+# 0. Installation
 
 Run the following install script. This will install files to
 /usr/local/bin/udon/
@@ -45,20 +45,20 @@ Add `/usr/local/bin/udon` to your shell's PATH. Add the following line to your
 
     PATH=$PATH:/usr/local/bin/udon
 
-# 2 DNS
+# 1 DNS
 
 DNS is required for clients to communicate with the server FQDN.
 Verify the serving host can be found via its hostname and/or DNS record.
 You can verify this by running `ping <hostname>` or `dig <hostname>`.
 
-# 3. Initialization
+# 2. Initialization
 
 Run the `udon_init.py` command.
 
 `udon_init.py` will perform the following actions:
 
 * Setup a '.udon' directory in your home directory (/home/$USER/.udon).
-  See Section 4 for directory structure.
+  See Section 3 for directory structure.
 
 * Ask to create test keys. These are used for running the tests in
   `test_libudon.py`
@@ -72,8 +72,7 @@ Run the `udon_init.py` command.
   `cleint_side_key/` and `server_side_key/` directories. If you only
   want to create a user key pair, run: `udon_init.py --user`
 
-
-# 4. The /home/$user/.udon directory tree
+# 3. The /home/$USER/.udon directory tree
 
 ## .udon/keys
 
@@ -90,7 +89,7 @@ the files to the md5sum of the key itself.
 ## .udon/channel_cfgs
 
 This directory contains config files which define communication channels.
-See example config at: `/usr/local/bin/udon/example.cfg`
+See example config in section 6 below.
 
 ## .udon/db
 
@@ -106,7 +105,7 @@ Layer Security (TLS) connections between cleints and server.
 Server log files. The server only logs errors.
 
 
-# 5. Run the server
+# 4. Run the server
 
 Start the server:
 
@@ -116,11 +115,32 @@ On the server host, copy the public keys of the users to
 /home/$USER/.udon/keys/server_side_keys/. This allows the server to
 authenticate user requests.
 
-# 6. Run the tests
+# 5. Run the tests
 
 With the server running, run the tests:
 
     test_libudon.py
+
+
+# 6 Channel configs
+
+A channel is a configured profile for communication. It identifies the server,
+the intended recipeints, message databases, and the keys by which to communicate.
+Configs are located in the `/home/$USER/.udon/channel_cfgs/` directory after
+`udon_init.py` is run.
+
+The following is an example of a channel shared between Bob and Sally:
+
+filename: `bob_and_sally`
+
+    channel = "bob_and_sally"
+    client_key_name = 'bob.pub'
+    client_private_key = '/home/bob/.udon/keys/client_side_keys/bob'
+    client_db_path = '/home/bob/.udon/db/bob.pub-udon-local.db'
+    dest_key_name_list = ['bob.pub', 'sally.pub']
+    server_fqdn = 'udonserver.net'
+    server_port = '50051'
+    ssl_root = '/home/bob/.udon/TLS/udonserver.net-root.crt'
 
 
 # 7. Command line example of usage
