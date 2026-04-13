@@ -143,7 +143,19 @@ filename: `bob_and_sally`
     ssl_root = '/home/bob/.udon/TLS/udonserver.net-root.crt'
 
 
-# 7. Command line examples of usage
+# 7. server.conf
+
+The server's config is located at `/home/$USER/.udon/server.conf`.
+This config defines the server's port number, location of database and
+certificates.
+
+    server_port = '50051'
+    server_db_path  = '/home/<user>/.udon/db/udon-server.db'
+    ssl_cert = '/home/<user>/.udon/TLS/localhost/localhost.crt'
+    ssl_cert_key = '/home/<tree>/.udon/TLS/localhost.pem'
+
+
+# 8. Command line examples of usage
 
     $ udon --message bob_and_sally
     > Free Software, is Free as in Speech, but beer would be nice also.
