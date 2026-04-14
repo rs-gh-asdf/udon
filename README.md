@@ -7,18 +7,10 @@
 
 * Udon provides simple messaging between clients via a centralized server.
 
+* No GUI. No Fluff.
+
 * See Setion 7 for examples of basic usage.
 
-* It is a proof of concept.
-
-
-# Project Goals
-
-* Minimal and Primitive message passing service - No GUI. No fluff.
-
-* The Server is ignorant - Server does not store user info or state. The server
-  identifues users by the md5sum of their public key, located in
-  ../..udon/keys/server_side_keys/ direcotry.
 
 # Tested Platforms
 
