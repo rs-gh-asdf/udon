@@ -28,7 +28,7 @@ OS platforms
 # 0. Installation
 
 Run the following install script. This will install files to
-/usr/local/bin/udon/
+`/usr/local/bin/udon/`
 
     sudo ./INSTALL.sh
 
