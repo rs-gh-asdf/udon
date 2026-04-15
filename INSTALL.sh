@@ -86,12 +86,10 @@ echo "[DONE] Created: /usr/local/bin/udon/udon-venv"
 # INSTALL DEPENDENCIES TO VIRTUAL ENVIRONMENT
 /usr/local/bin/udon/udon-venv/bin/python3 -m pip install --upgrade pip
 /usr/local/bin/udon/udon-venv/bin/python3 -m pip install beautifulsoup4
-/usr/local/bin/udon/udon-venv/bin/python3 -m pip install sqlite3
 /usr/local/bin/udon/udon-venv/bin/python3 -m pip install cffi
 /usr/local/bin/udon/udon-venv/bin/python3 -m pip install config
 /usr/local/bin/udon/udon-venv/bin/python3 -m pip install cryptography
 /usr/local/bin/udon/udon-venv/bin/python3 -m pip install google
-/usr/local/bin/udon/udon-venv/bin/python3 -m pip install rpci
 /usr/local/bin/udon/udon-venv/bin/python3 -m pip install grpcio-tools
 /usr/local/bin/udon/udon-venv/bin/python3 -m pip install protobuf
 /usr/local/bin/udon/udon-venv/bin/python3 -m pip install pycparser
