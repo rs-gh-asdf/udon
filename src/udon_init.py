@@ -9,10 +9,7 @@ from cryptography.fernet import Fernet
 from signal import signal
 from signal import SIGINT
 from concurrent import futures
-from libudon import udon_DB
-from libudon import udon_client
-from libudon import udon_server
-from libudon import udon_utils
+from pathlib import Path
 import subprocess
 import platform
 import datetime
@@ -22,6 +19,18 @@ import config
 import uuid
 import sys
 import os
+
+try:
+	from libudon import udon_DB
+	from libudon import udon_client
+	from libudon import udon_server
+	from libudon import udon_utils
+except Exception as e:
+	path_str = str(Path(__file__))
+	if "/udon/src/udon_init.py" in path_str:
+		print(f"Error: Incorrect file path:{path_str}")
+		print("Run from '/usr/local/bin/udon/udon_init.py'")
+		sys.exit(1)
 
 """ Global Variables """
 TEST_DB = "/tmp/test.db"

@@ -2,17 +2,26 @@
 # SPDX-License-Identifier: GPL-2.0
 # Copyright (c) 2025 Tree Davies
 
-from libudon import udon_DB
-from libudon import udon_client
-from libudon import udon_utils
 from optparse import OptionParser
 from signal import signal
 from signal import SIGINT
+from pathlib import Path
 import config
 import time
 import sys
 import os
-from test_libudon import check_all_configs
+
+try:
+	from test_libudon import check_all_configs
+	from libudon import udon_DB
+	from libudon import udon_client
+	from libudon import udon_utils
+except Exception as e:
+	path_str = str(Path(__file__))
+	if "/udon/src/udon" in path_str:
+		print(f"Error: Incorrect file path:{path_str}")
+		print("Run from '/usr/local/bin/udon/udon'")
+		sys.exit(1)
 
 """ Global Variables """
 UDON_CHAN_DIR = '.udon/channel_cfgs'
