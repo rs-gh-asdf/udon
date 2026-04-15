@@ -55,7 +55,7 @@ Run the `udon_init.py` command as a regular user.
 * Ask to create test keys. These are used for running the tests in
   `test_libudon.py`
 
-* Create TLS Certificates. This will create a self signed cerificate.
+* Create TLS/SSL Certificates. This will create a self signed cerificate.
   Even if you do not intend to run a server, creating a cert will allow you
   to run the tests. Which is a good idea. The hostname for the cert should match
   the server's DNS record.
@@ -63,6 +63,11 @@ Run the `udon_init.py` command as a regular user.
 * Create a user public/private key pair. These are written to
   `cleint_side_key/` and `server_side_key/` directories. If you only
   want to create a user key pair, run: `udon_init.py --user`
+
+* If you created a user key, `udon_init.py` will generate a channel config
+  with the same name as the key, at `/home/.udon/channel_cfs/`. This will
+  allow you to test the key by sending messages to yourself.
+
 
 # 3. The /home/$USER/.udon directory tree
 
